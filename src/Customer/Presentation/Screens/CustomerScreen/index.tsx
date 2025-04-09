@@ -34,7 +34,6 @@ export function CustomerScreen() {
     }
 
     async function saveCustomer() {
-
         try {
             const customer = Customer.create(
                 name,
@@ -45,8 +44,13 @@ export function CustomerScreen() {
             await customerRepository.save(customer)
             navigation.navigate('customers')
 
-        } catch (error) {
-            Alert.alert('Erro ao salvar cliente', error.message)
+        } catch (error: unknown) {
+            Alert.alert(
+                'Erro ao salvar cliente',
+                error instanceof Error ?
+                    error.message :
+                    'Erro desconhecido'
+            )
         }
     }
 

@@ -4,7 +4,7 @@ export interface CustomerRepository {
 
     readonly CUSTOMER_KEY: string
 
-    save(customer: Customer): Promise<void>
+    save(newCustomer: Customer): Promise<void>
     findAll(): Promise<Customer[]>
-    delete(customer: Customer): Promise<void>
+    delete(deletedCustomer: Customer): Promise<void>
 }

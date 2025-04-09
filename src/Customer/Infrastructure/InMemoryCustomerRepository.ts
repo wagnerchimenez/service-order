@@ -11,31 +11,31 @@ export class InMemoryCustomerRepository implements CustomerRepository {
 
     constructor() { }
 
-    async save(customer: Customer): Promise<void> {
+    async save(newCustomer: Customer): Promise<void> {
 
-        const nameExists = this.customers.find(customer => customer.name.toLowerCase() === customer.name.toLowerCase())
+        const nameExists = this.customers.find(customer => customer.name.trim().toLowerCase() === newCustomer.name.trim().toLowerCase())
 
         if (nameExists) {
             throw new Error('Cliente já cadastrado')
         }
 
-        const emailExists = this.customers.find(customer => customer.email.address === customer.email.address)
+        const emailExists = this.customers.find(customer => customer.email.address === newCustomer.email.address)
 
         if (emailExists) {
             throw new Error('Email já cadastrado')
         }
 
-        const phoneExists = this.customers.find(customer => customer.phone.number === customer.phone.number)
+        const phoneExists = this.customers.find(customer => customer.phone.number === newCustomer.phone.number)
 
         if (phoneExists) {
             throw new Error('Telefone já cadastrado')
         }
 
-        this.customers.push(customer)
+        this.customers.push(newCustomer)
     }
 
-    async delete(customer: Customer): Promise<void> {
-        this.customers = this.customers.filter(customer => customer.id !== customer.id)
+    async delete(deletedCustomer: Customer): Promise<void> {
+        this.customers = this.customers.filter(customer => customer.id !== deletedCustomer.id)
     }
 
     async findAll(): Promise<Customer[]> {

@@ -28,6 +28,7 @@ export function CustomersScreen() {
         const command = new ListCustomers()
         const handler = new ListCustomersHandler(customerRepository)
         const customers = await handler.execute(command)
+
         setCustomers(customers)
     }
 
@@ -98,7 +99,7 @@ export function CustomersScreen() {
             <TouchableOpacity
                 className="bg-green-500 p-4 rounded-md w-full items-center"
                 onPress={() => {
-                    navigation.navigate('customer')
+                    navigation.navigate('customer', {})
                 }}
             >
                 <Text
