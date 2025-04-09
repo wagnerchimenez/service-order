@@ -1,4 +1,4 @@
-import { Routes } from '@/Shared/Routes';
+import { Routes } from '@/Shared/Infrastructure/Routes';
 
 export default function App() {
   return (
