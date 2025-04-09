@@ -1,7 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 // import { Order } from '@/Order/Presentation/Screens/Order'
-import { Customers } from '@/Customer/Presentation/Screens/Customers'
+import { CustomersScreen } from '@/Customer/Presentation/Screens/CustomersScreen'
+import { CustomerScreen } from '@/Customer/Presentation/Screens/CustomerScreen'
+
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -9,8 +11,12 @@ export function AppRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen
+                name="customers"
+                component={CustomersScreen}
+            />
+            <Screen
                 name="customer"
-                component={Customers}
+                component={CustomerScreen}
             />
             {/* <Screen
                 name="order"

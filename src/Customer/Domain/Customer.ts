@@ -18,6 +18,10 @@ export class Customer {
     }
 
     static create(name: string, email: Email, phone: Phone): Customer {
+        if (name.length === 0) {
+            throw new Error('Nome é obrigatório')
+        }
+
         const id = uuidv4()
         return new Customer(id, name, email, phone)
     }

@@ -7,9 +7,9 @@ export class Email {
 
     static create(address: string): Email {
         if (!this.validate(address)) {
-            throw new Error('Invalid email address')
+            throw new Error('E-mail inválido')
         }
-        return new Email(address)
+        return new Email(address.toLowerCase())
     }
 
     private static validate(address: string): boolean {

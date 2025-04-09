@@ -7,7 +7,7 @@ export class Phone {
 
     static create(number: string): Phone {
         if (!this.validate(number)) {
-            throw new Error('Invalid phone number')
+            throw new Error('Telefone inválido')
         }
         return new Phone(number)
     }
