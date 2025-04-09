@@ -25,7 +25,9 @@ export function Customers() {
 
     return (
         <SafeAreaView>
-            <Text>Customer</Text>
+            <Text
+                className="text-2xl font-bold"
+            >Customer</Text>
 
             <FlatList
                 data={customers}
