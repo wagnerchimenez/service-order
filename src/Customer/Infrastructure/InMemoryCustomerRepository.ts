@@ -33,6 +33,117 @@ export class InMemoryCustomerRepository implements CustomerRepository {
                 Email.create('other.customer@example.com'),
                 Phone.create('67999999999'),
             ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'John Doe',
+                Email.create('john.doe@example.com'),
+                Phone.create('67999999999'),
+            ),
+            Customer.create(
+                'Other Customer',
+                Email.create('other.customer@example.com'),
+                Phone.create('67999999999'),
+            ),
+            
         ]
     }
 }
