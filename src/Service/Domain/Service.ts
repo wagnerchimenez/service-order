@@ -1,3 +1,6 @@
+import 'react-native-get-random-values'
+import {v4 as uuidv4} from 'uuid';
+
 export class Service {
     readonly id: string
     readonly name: string
@@ -14,7 +17,7 @@ export class Service {
             throw new Error("Invalid service parameters")
         }
 
-        const id = `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`
+        const id = uuidv4()
         return new Service(id, name, price)
     }
 

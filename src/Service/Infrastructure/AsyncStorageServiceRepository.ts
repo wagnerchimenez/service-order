@@ -7,46 +7,34 @@ import { SERVICE_REPOSITORY_KEY } from "../Domain/ServiceRepository";
 
 export class AsyncStorageServiceRepository implements ServiceRepository {
 
-    async save(service: Service): Promise<void> {
-        try {
-            const servicesStored = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
-            let services = (!servicesStored) ? [service] : [...servicesStored, service]
-            await AsyncStorage.setItem(SERVICE_REPOSITORY_KEY, JSON.stringify(services))
-        } catch (error) {
-            console.error(error)
+    async save(newService: Service): Promise<void> {
+        const services = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
+
+        if (!services) {
+            await AsyncStorage.setItem(SERVICE_REPOSITORY_KEY, JSON.stringify([newService]))
+            return
         }
+
+        const servicesArray = JSON.parse(services)
+        const nameExists = servicesArray.find((service: Service) => service.name === newService.name)
+
+        if (nameExists) {
+            throw new Error('Serviço já cadastrado')
+        }
+
+        servicesArray.push(newService)
+        await AsyncStorage.setItem(SERVICE_REPOSITORY_KEY, JSON.stringify(servicesArray))
     }
 
-    async delete(id: string): Promise<void> {
-        try {
-            const servicesStored = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
-            const services = servicesStored ? JSON.parse(servicesStored) : []
-            const servicesFiltered = services.filter((service: Service) => service.id !== id)
-            await AsyncStorage.setItem(SERVICE_REPOSITORY_KEY, JSON.stringify(servicesFiltered))
-        } catch (error) {
-            console.log(error)
-        }
+    async delete(deletedService: Service): Promise<void> {
+        const services = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
+        const servicesArray = JSON.parse(services || '[]')
+        const filteredServices = servicesArray.filter((service: Service) => service.id !== deletedService.id)
+        await AsyncStorage.setItem(SERVICE_REPOSITORY_KEY, JSON.stringify(filteredServices))
     }
 
-    async findById(id: string): Promise<Service | undefined> {
-        try {
-            const servicesStored = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
-            const services = servicesStored ? JSON.parse(servicesStored) : []
-            const service = services.find((service: Service) => service.id === id)
-            return service ? Service.fromStoredData(service) : undefined
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async findAll(): Promise<Service[] | undefined> {
-        try {
-            const servicesStored = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
-            const services = servicesStored ? JSON.parse(servicesStored) : []
-
-            return services.map((service: Service) => Service.fromStoredData(service))
-        } catch (error) {
-            console.log(error)
-        }
+    async findAll(): Promise<Service[]> {
+        const services = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
+        return JSON.parse(services || '[]')
     }
 }

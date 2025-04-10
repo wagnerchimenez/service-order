@@ -1,4 +1,4 @@
-import { DeleteServiceCommand } from "./DeleteServiceCommand"
+import { DeleteService } from "./DeleteService"
 import { ServiceRepository } from "../Domain/ServiceRepository"
 
 export class DeleteServiceHandler {
@@ -8,7 +8,7 @@ export class DeleteServiceHandler {
         this.serviceRepository = serviceRepository
     }
 
-    async execute(command: DeleteServiceCommand): Promise<void> {
-        await this.serviceRepository.delete(command.id)
+    async execute(command: DeleteService): Promise<void> {
+        await this.serviceRepository.delete(command.service)
     }
 }

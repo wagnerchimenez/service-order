@@ -5,6 +5,8 @@ import { RootStackParamList } from '../Types/types'
 import { OrderScreen } from '@/Order/Presentation/Screens/OrderScreen'
 import { CustomersScreen } from '@/Customer/Presentation/Screens/CustomersScreen'
 import { CustomerScreen } from '@/Customer/Presentation/Screens/CustomerScreen'
+import { ServicesScreen } from '@/Service/Presentation/Screens/ServicesScreen'
+import { ServiceScreen } from '@/Service/Presentation/Screens/ServiceScreen'
 
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
@@ -12,11 +14,15 @@ const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 export function AppRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
-            {/* <Screen
-                name="order"
-                component={OrderScreen}
-            /> */}
-             <Screen
+            <Screen
+                name="services"
+                component={ServicesScreen}
+            />
+            <Screen
+                name="service"
+                component={ServiceScreen}
+            />
+            <Screen
                 name="customers"
                 component={CustomersScreen}
             />

@@ -9,7 +9,7 @@ type HeaderProps = {
 
 export function Header({ title, onPressBack, onPressForward }: HeaderProps) {
     return (
-        <View className="flex-row items-center gap-2">
+        <View className="flex-row items-center justify-center gap-2">
 
             {onPressBack && (
                 <TouchableOpacity

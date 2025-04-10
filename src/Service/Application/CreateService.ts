@@ -1,4 +1,4 @@
-export class AddServiceCommand {
+export class CreateService {
     readonly name: string
     readonly price: number
 

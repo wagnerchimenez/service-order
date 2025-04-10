@@ -58,7 +58,7 @@ export function CustomerScreen() {
 
     return (
         <SafeAreaView
-            className="flex-1 items-center p-2"
+            className="flex-1 p-2"
         >
 
             <Header

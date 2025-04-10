@@ -1,8 +1,8 @@
-import { AddServiceCommand } from "./AddServiceCommand"
+import { CreateService } from "./CreateService"
 import { Service } from "../Domain/Service"
 import { ServiceRepository } from "../Domain/ServiceRepository"
 
-export class AddServiceHandler {
+export class CreateServiceHandler {
 
     private serviceRepository: ServiceRepository
 
@@ -10,7 +10,7 @@ export class AddServiceHandler {
         this.serviceRepository = serviceRepository
     }
 
-    async execute(command: AddServiceCommand): Promise<void> {
+    async execute(command: CreateService): Promise<void> {
         const service = Service.create(command.name, command.price)
         await this.serviceRepository.save(service)
     }
