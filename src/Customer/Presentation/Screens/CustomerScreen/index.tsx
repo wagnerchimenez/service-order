@@ -12,6 +12,8 @@ import { useNavigation } from "@react-navigation/native";
 
 import * as Icon from "phosphor-react-native";
 
+import { Header } from "@/Shared/Infrastructure/Components/Header";
+
 import { Customer } from "@/Customer/Domain/Customer";
 import { Email } from "@/Shared/Domain/Email";
 import { Phone } from "@/Shared/Domain/Phone";
@@ -59,24 +61,12 @@ export function CustomerScreen() {
             className="flex-1 items-center p-2"
         >
 
-            <View className="flex-row items-center gap-2">
-
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate('customers')
-                    }}
-                >
-                    <Icon.CaretLeft weight="bold" size={20} />
-                </TouchableOpacity>
-
-                <Text
-                    className="text-4xl font-bold mt-4 mb-4"
-                >
-                    Cliente
-                </Text>
-            </View>
-
-
+            <Header
+                title="Cliente"
+                onPressBack={() => {
+                    navigation.navigate('customers')
+                }}
+            />
 
             <View
                 className="flex-1 w-full gap-2"

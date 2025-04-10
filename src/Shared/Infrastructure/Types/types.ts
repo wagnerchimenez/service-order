@@ -4,6 +4,7 @@ export type RootStackParamList = {
     // Settings: { tab: 'account' | 'notifications' };
     customers: undefined
     customer: { id?: string }
+    order: { id?: string }
 };
 
 declare global {

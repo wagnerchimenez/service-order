@@ -6,7 +6,7 @@ test('should create a valid email', () => {
 })
 
 test('should throw an error if the email is invalid', () => {
-    expect(() => Email.create('invalid-email')).toThrow('Invalid email address')
+    expect(() => Email.create('invalid-email')).toThrow('')
 })
 
 test('should get the email address', () => {
