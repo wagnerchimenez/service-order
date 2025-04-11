@@ -5,6 +5,7 @@ export type RootStackParamList = {
     servicesRoutes: undefined,
     settingsRoutes: undefined,
 
+    customers: undefined,
     customer: { id?: number },
     
     services: undefined,
