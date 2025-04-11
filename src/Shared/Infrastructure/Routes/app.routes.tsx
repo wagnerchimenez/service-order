@@ -9,7 +9,7 @@ import { ServicesScreen } from '@/Service/Presentation/Screens/ServicesScreen'
 import { ServiceScreen } from '@/Service/Presentation/Screens/ServiceScreen'
 import { OrdersScreen } from '@/Order/Presentation/Screens/OrdersScreen'
 import { SettingsScreen } from '@/Settings/Presentation/Screens/SettingsScreen'
-import { HomeScreen } from '@/Home/Presentation/Screens/HomeScreen'
+import { HomeTabs } from './home.routes'
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
@@ -18,7 +18,7 @@ export function AppRoutes() {
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen
                 name="home"
-                component={HomeScreen}
+                component={HomeTabs}
             />
             <Screen
                 name="settings"

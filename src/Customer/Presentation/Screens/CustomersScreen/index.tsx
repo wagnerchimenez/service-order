@@ -17,6 +17,8 @@ import { DeleteCustomerHandler } from '@/Customer/Application/DeleteCustomerHand
 import { Customer } from '@/Customer/Domain/Customer'
 import { AsyncStorageCustomerRepository } from '@/Customer/Infrastructure/AsyncStorageCustomerRepository'
 
+import { Header } from "@/Shared/Infrastructure/Components/Header";
+
 export function CustomersScreen() {
     const navigation = useNavigation()
 
@@ -64,11 +66,10 @@ export function CustomersScreen() {
         <SafeAreaView
             className="flex-1 items-center p-2"
         >
-            <Text
-                className="text-4xl font-bold mt-4 mb-4"
-            >
-                Clientes
-            </Text>
+            <Header
+                title="Clientes"
+                onPressBack={() => navigation.navigate('home')}
+            />
 
             <View className="flex-1 w-full">
                 <FlatList
@@ -97,13 +98,13 @@ export function CustomersScreen() {
             </View>
 
             <TouchableOpacity
-                className="bg-green-500 p-4 rounded-md w-full items-center"
+                className="bg-green-500 p-2 rounded-md w-full items-center"
                 onPress={() => {
                     navigation.navigate('customer', {})
                 }}
             >
                 <Text
-                    className="text-white text-lg font-bold"
+                    className="text-white"
                 >
                     Adicionar Cliente
                 </Text>
