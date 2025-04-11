@@ -1,19 +1,25 @@
 import { useState } from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 
 import { Header } from "@/Shared/Infrastructure/Components/Header";
 
 export function SettingsScreen() {
 
+    const navigation = useNavigation()
+
     const [companyName, setCompanyName] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
     const [email, setEmail] = useState('')
-    
+
     return (
         <SafeAreaView className="flex-1 p-2">
-            <Header title="Configurações" />
+            <Header 
+                title="Configurações" 
+                onPressBack={() => navigation.navigate('home')}
+            />
 
             <View className="flex-1 w-full gap-2">
                 <TextInput

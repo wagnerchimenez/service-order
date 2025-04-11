@@ -8,6 +8,8 @@ export type RootStackParamList = {
     order: { id?: string },
     service: { id?: string }
     orders: undefined
+    home: undefined,
+    settings: undefined
 };
 
 declare global {
