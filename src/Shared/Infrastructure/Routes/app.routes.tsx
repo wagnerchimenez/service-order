@@ -7,13 +7,17 @@ import { CustomersScreen } from '@/Customer/Presentation/Screens/CustomersScreen
 import { CustomerScreen } from '@/Customer/Presentation/Screens/CustomerScreen'
 import { ServicesScreen } from '@/Service/Presentation/Screens/ServicesScreen'
 import { ServiceScreen } from '@/Service/Presentation/Screens/ServiceScreen'
-
+import { OrdersScreen } from '@/Order/Presentation/Screens/OrdersScreen'
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
 export function AppRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
+            <Screen
+                name="orders"
+                component={OrdersScreen}
+            />
             <Screen
                 name="order"
                 component={OrderScreen}

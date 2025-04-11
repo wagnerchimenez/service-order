@@ -7,6 +7,7 @@ export type RootStackParamList = {
     services: undefined
     order: { id?: string },
     service: { id?: string }
+    orders: undefined
 };
 
 declare global {
