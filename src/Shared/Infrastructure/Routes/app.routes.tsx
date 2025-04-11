@@ -15,6 +15,10 @@ export function AppRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen
+                name="order"
+                component={OrderScreen}
+            />
+            <Screen
                 name="services"
                 component={ServicesScreen}
             />
