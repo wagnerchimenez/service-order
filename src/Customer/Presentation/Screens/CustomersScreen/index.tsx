@@ -68,7 +68,7 @@ export function CustomersScreen() {
         >
             <Header
                 title="Clientes"
-                onPressBack={() => navigation.navigate('home')}
+                onPressBack={() => navigation.navigate('homeRoutes')}
             />
 
             <View className="flex-1 w-full">

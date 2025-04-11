@@ -1,7 +1,7 @@
 import { Service } from '@/Service/Domain/Service'
 
 import { AddServiceCommand } from '@/Service/Application/CreateService'
-import { AddServiceHandler } from '@/Service/Application/AddServiceHandler'
+import { AddServiceHandler } from '@/Service/Application/CreateServiceHandler'
 
 test('should add a service', () => {
 

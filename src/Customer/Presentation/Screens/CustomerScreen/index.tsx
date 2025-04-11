@@ -97,10 +97,10 @@ export function CustomerScreen() {
             </View>
 
             <TouchableOpacity
-                className="bg-green-500 p-4 rounded-md w-full items-center"
+                className="bg-green-500 p-2 rounded-md items-center"
                 onPress={saveCustomer}
             >
-                <Text className="text-white text-lg font-bold">Salvar</Text>
+                <Text className="text-white">Salvar</Text>
             </TouchableOpacity>
 
         </SafeAreaView>

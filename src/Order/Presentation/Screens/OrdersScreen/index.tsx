@@ -12,7 +12,7 @@ export function OrdersScreen() {
         <SafeAreaView className="flex-1 p-2">
             <Header
                 title="Ordens de Serviço"
-                onPressBack={() => navigation.navigate('home')}
+                onPressBack={() => navigation.navigate('homeRoutes')}
             />
 
             <View className="flex-1">

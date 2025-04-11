@@ -1,52 +1,69 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { RootStackParamList } from '../Types/types'
 
-import { OrderScreen } from '@/Order/Presentation/Screens/OrderScreen'
-import { CustomersScreen } from '@/Customer/Presentation/Screens/CustomersScreen'
-import { CustomerScreen } from '@/Customer/Presentation/Screens/CustomerScreen'
-import { ServicesScreen } from '@/Service/Presentation/Screens/ServicesScreen'
-import { ServiceScreen } from '@/Service/Presentation/Screens/ServiceScreen'
-import { OrdersScreen } from '@/Order/Presentation/Screens/OrdersScreen'
-import { SettingsScreen } from '@/Settings/Presentation/Screens/SettingsScreen'
-import { HomeTabs } from './home.routes'
+import { HomeRoutes } from './home.routes'
+import { OrderRoutes } from './order.routes'
+import { CustomerRoutes } from './customer.routes'
+import { ServiceRoutes } from './service.routes'
+import { SettingsRoutes } from './settings.routes'
 
-const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
+import * as Icon from 'phosphor-react-native'
+
+const { Navigator, Screen } = createBottomTabNavigator<RootStackParamList>()
 
 export function AppRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
-            <Screen
-                name="home"
-                component={HomeTabs}
+            <Screen 
+                name="homeRoutes"
+                component={HomeRoutes}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon.House size={size} color={color} />
+                    ),
+                    title: 'Home',
+                }}
+            />
+            <Screen 
+                name="ordersRoutes"
+                component={OrderRoutes}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon.ClipboardText size={size} color={color} />
+                    ),
+                    title: 'Home',
+                }}
             />
             <Screen
-                name="settings"
-                component={SettingsScreen}
+                name="customersRoutes"
+                component={CustomerRoutes}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon.Users size={size} color={color} />
+                    ),
+                    title: 'Clientes',
+                }}
             />
             <Screen
-                name="orders"
-                component={OrdersScreen}
+                name="servicesRoutes"
+                component={ServiceRoutes}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon.Wrench size={size} color={color} />
+                    ),
+                    title: 'Serviços',
+                }}
             />
             <Screen
-                name="order"
-                component={OrderScreen}
-            />
-            <Screen
-                name="services"
-                component={ServicesScreen}
-            />
-            <Screen
-                name="service"
-                component={ServiceScreen}
-            />
-            <Screen
-                name="customers"
-                component={CustomersScreen}
-            />
-            <Screen
-                name="customer"
-                component={CustomerScreen}
+                name="settingsRoutes"
+                component={SettingsRoutes}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon.Gear size={size} color={color} />
+                    ),
+                    title: 'Configurações',
+                }}
             />
         </Navigator>
     )

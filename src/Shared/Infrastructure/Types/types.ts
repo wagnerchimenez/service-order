@@ -1,15 +1,14 @@
 export type RootStackParamList = {
-    // Home: undefined;
-    // Profile: { userId: string };
-    // Settings: { tab: 'account' | 'notifications' };
-    customers: undefined
-    customer: { id?: string }
-    services: undefined
-    order: { id?: string },
-    service: { id?: string }
-    orders: undefined
-    home: undefined,
-    settings: undefined
+    homeRoutes: undefined,
+    ordersRoutes: undefined,
+    customersRoutes: undefined,
+    servicesRoutes: undefined,
+    settingsRoutes: undefined,
+
+    customer: { id?: number },
+    
+    services: undefined,
+    service: { id?: number }
 };
 
 declare global {

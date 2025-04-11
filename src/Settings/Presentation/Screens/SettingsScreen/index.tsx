@@ -18,7 +18,7 @@ export function SettingsScreen() {
         <SafeAreaView className="flex-1 p-2">
             <Header 
                 title="Configurações" 
-                onPressBack={() => navigation.navigate('home')}
+                onPressBack={() => navigation.navigate('homeRoutes')}
             />
 
             <View className="flex-1 w-full gap-2">

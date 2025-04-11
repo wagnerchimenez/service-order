@@ -1,15 +1,15 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { HomeScreen } from '@/Home/Presentation/Screens/HomeScreen'
+import { SettingsScreen } from '@/Settings/Presentation/Screens/SettingsScreen'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
-export function HomeRoutes() {
+export function SettingsRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen
-                name="home"
-                component={HomeScreen}
+                name="settings"
+                component={SettingsScreen}
             />
         </Navigator>
     )

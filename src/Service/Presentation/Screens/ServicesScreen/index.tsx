@@ -61,6 +61,7 @@ export function ServicesScreen() {
         <SafeAreaView className="flex-1 p-2">
             <Header
                 title="Serviços"
+                onPressBack={() => navigation.navigate('homeRoutes')}
             />
 
             <View className="flex-1 w-full">
@@ -99,13 +100,13 @@ export function ServicesScreen() {
             </View>
 
             <TouchableOpacity
-                className="bg-green-500 p-4 rounded-md w-full items-center"
+                className="bg-green-500 p-2 rounded-md items-center"
                 onPress={() => {
                     navigation.navigate('service', {})
                 }}
             >
                 <Text
-                    className="text-white text-lg font-bold"
+                    className="text-white"
                 >
                     Adicionar Serviço
                 </Text>
