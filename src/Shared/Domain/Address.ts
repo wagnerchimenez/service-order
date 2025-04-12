@@ -14,6 +14,11 @@ export class Address {
     }
 
     static create(street: string, number: number, neighborhood: string, city: string, state: string): Address {
+
+        if (street.length == 0) {
+            throw new Error('Endereço inválido')
+        }
+
         return new Address(
             street,
             number,
