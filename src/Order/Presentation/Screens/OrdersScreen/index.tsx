@@ -64,7 +64,10 @@ export function OrdersScreen() {
 
             </View>
 
-            <TouchableOpacity className="bg-green-500 rounded-md p-2">
+            <TouchableOpacity
+                className="bg-green-500 rounded-md p-2"
+                onPress={() => navigation.navigate('order', {})}
+            >
                 <Text className="text-white text-center">
                     Nova Ordem de Serviço
                 </Text>
