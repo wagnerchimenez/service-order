@@ -32,7 +32,7 @@ export function AppRoutes() {
                     tabBarIcon: ({ color, size }) => (
                         <Icon.ClipboardText size={size} color={color} />
                     ),
-                    title: 'Home',
+                    title: 'Pedidos',
                 }}
             />
             <Screen
