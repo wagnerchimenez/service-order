@@ -9,7 +9,11 @@ export type RootStackParamList = {
     customer: { id?: number },
     
     services: undefined,
-    service: { id?: number }
+    service: { id?: number },
+
+    orders: undefined,
+    order: { id?: number },
+    selectCustomer: undefined
 };
 
 declare global {

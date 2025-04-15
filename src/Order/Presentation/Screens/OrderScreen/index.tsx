@@ -6,9 +6,18 @@ import { View, Text, TextInput, ScrollView } from "react-native";
 
 import * as Icon from 'phosphor-react-native'
 
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
+
+import { Customer } from '@/Customer/Domain/Customer'
+
 import { Header } from "@/Shared/Infrastructure/Components/Header";
 
 export function OrderScreen() {
+
+    const navigation = useNavigation()
+    const route = useRoute()
+
+    const [customer, setCustomer] = useState<Customer | null>(null)
 
     const [services, setServices] = useState<{
         name: string
@@ -26,6 +35,12 @@ export function OrderScreen() {
             quantity: 2
         },
     ])
+
+    useFocusEffect(() => {
+        if (route.params?.customer) {
+            setCustomer(route.params.customer)
+        }
+    })
 
     return (
         <SafeAreaView className="flex-1 p-2">
@@ -47,6 +62,7 @@ export function OrderScreen() {
 
                     <TouchableOpacity
                         className="bg-green-500 rounded-md size-6 justify-center items-center"
+                        onPress={() => navigation.navigate('selectCustomer')}
                     >
                         <Text
                             className="text-white"
@@ -56,14 +72,16 @@ export function OrderScreen() {
                     </TouchableOpacity>
                 </View>
 
-                <View
-                    className="shadow-sm p-4 rounded-md gap-2 mb-2"
-                >
-                    <Text>Cliente: Wagner Lima Chimenez</Text>
-                    <Text>Telefone: (11) 99999-9999</Text>
-                    <Text>Endereço: Rua das Flores, 123</Text>
-                    <Text>E-mail: wagnerllchimenez.comp@gmail.com</Text>
-                </View>
+                {customer &&
+
+                    <View
+                        className="shadow-sm p-4 rounded-md gap-2 mb-2"
+                    >
+                        <Text>Cliente: {customer?.name}</Text>
+                        <Text>Telefone: {customer?.phone.number}</Text>
+                        <Text>E-mail: {customer?.email.address}</Text>
+                    </View>
+                }
 
                 <View
                     className="flex-row items-center"
