@@ -10,7 +10,7 @@ export class ListServicesHandler {
         this.serviceRepository = serviceRepository
     }
 
-    async execute(command: ListServices): Promise<Service[] | undefined> {
+    async execute(command: ListServices): Promise<Service[]> {
         return this.serviceRepository.findAll()
     }
     

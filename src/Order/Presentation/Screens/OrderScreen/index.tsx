@@ -13,6 +13,9 @@ import { Service } from '@/Service/Domain/Service'
 import { ListCustomerById } from '@/Customer/Application/ListCustomerById';
 import { ListCustomerByIdHandler } from '@/Customer/Application/ListCustomerByIdHandler';
 import { AsyncStorageCustomerRepository } from '@/Customer/Infrastructure/AsyncStorageCustomerRepository';
+import { ListServiceById } from '@/Service/Application/ListServiceById';
+import { ListServiceByIdHandler } from '@/Service/Application/ListServiceByIdHandler';
+import { AsyncStorageServiceRepository } from '@/Service/Infrastructure/AsyncStorageServiceRepository';
 
 import { Header } from "@/Shared/Infrastructure/Components/Header";
 export function OrderScreen() {
@@ -40,7 +43,11 @@ export function OrderScreen() {
         },
     ])
 
-    async function getCustomer(customerId: string) {
+    async function getCustomer(customerId: string | null) {
+        if (!customerId) {
+            return
+        }
+
         const customerRepository = new AsyncStorageCustomerRepository()
         const command = new ListCustomerById(customerId)
         const handler = new ListCustomerByIdHandler(customerRepository)
@@ -50,9 +57,25 @@ export function OrderScreen() {
         setCustomer(customer)
     }
 
+    async function getService(serviceId: string | null) {
+
+        if (!serviceId) {
+            return
+        }
+
+        const serviceRepository = new AsyncStorageServiceRepository()
+        const command = new ListServiceById(serviceId)
+        const handler = new ListServiceByIdHandler(serviceRepository)
+
+        const service = await handler.execute(command)
+
+        setService(service)
+    }
+
     useFocusEffect(
         useCallback(() => {
-            getCustomer(route.params.customerId)
+            getCustomer(route.params?.customerId)
+            getService(route.params?.serviceId)
         }, [])
     )
 
@@ -122,7 +145,7 @@ export function OrderScreen() {
                 >
                     <View className="flex-row">
                         <Text className="text-lg font-bold mr-2">
-                            Selecione o serviço...
+                            Serviço: {service?.name}
                         </Text>
                     </View>
                     <View className="flex-row items-center">
@@ -130,11 +153,13 @@ export function OrderScreen() {
                             className="border-2 border-gray-300 rounded-md p-2 mr-2"
                             placeholder="Quantidade"
                             keyboardType="numeric"
+                            value='1'
                         />
                         <TextInput
                             className="border-2 border-gray-300 rounded-md p-2 mr-2"
                             placeholder="Valor"
                             keyboardType="numeric"
+                            value={service?.price.toString()}
                         />
 
                         <TouchableOpacity

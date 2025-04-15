@@ -55,9 +55,12 @@ export function SelectCustomerScreen() {
 
                                     <TouchableOpacity
                                         className="bg-red-500 p-2 rounded-md"
-                                        onPress={() => { navigation.navigate('order', {
-                                            customerId: item.id
-                                        }) }}
+                                        onPress={() => {
+                                            navigation.navigate('order', {
+                                                ...route.params,
+                                                customerId: item.id
+                                            })
+                                        }}
                                     >
                                         <Text className="text-white text-sm font-bold">Selecionar</Text>
                                     </TouchableOpacity>

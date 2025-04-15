@@ -37,4 +37,10 @@ export class AsyncStorageServiceRepository implements ServiceRepository {
         const services = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
         return JSON.parse(services || '[]')
     }
+
+    async findById(id: string): Promise<Service | null> {
+        const services = await AsyncStorage.getItem(SERVICE_REPOSITORY_KEY)
+        const servicesArray = JSON.parse(services || '[]')
+        return servicesArray.find((service: Service) => service.id === id) ?? null
+    }
 }
