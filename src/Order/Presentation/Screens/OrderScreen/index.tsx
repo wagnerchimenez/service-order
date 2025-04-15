@@ -2,11 +2,14 @@ import { useCallback, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, TextInput, ScrollView } from "react-native";
+import { View, Text, TextInput, ScrollView, Alert } from "react-native";
 
 import * as Icon from 'phosphor-react-native'
 
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
+
+import 'react-native-get-random-values'
+import { v4 as uuidv4 } from 'uuid';
 
 import { Customer } from '@/Customer/Domain/Customer'
 import { Service } from '@/Service/Domain/Service'
@@ -25,23 +28,15 @@ export function OrderScreen() {
 
     const [customer, setCustomer] = useState<Customer | null>(null)
     const [service, setService] = useState<Service | null>(null)
+    const [quantity, setQuantity] = useState(1)
+    const [price, setPrice] = useState(0)
 
     const [services, setServices] = useState<{
+        id: string
         name: string
         price: number
         quantity: number
-    }[]>([
-        {
-            name: 'Retífica de cabeçote asdfasd asdf asd asf asd asd fasdf asdfasdfa das asd',
-            price: 100,
-            quantity: 1
-        },
-        {
-            name: 'Retífica de cabeçote',
-            price: 100,
-            quantity: 2
-        },
-    ])
+    }[]>([])
 
     async function getCustomer(customerId: string | null) {
         if (!customerId) {
@@ -69,7 +64,50 @@ export function OrderScreen() {
 
         const service = await handler.execute(command)
 
+        if (!service) {
+            return
+        }
+
         setService(service)
+        setPrice(service.price)
+    }
+
+    function addService() {
+
+        if (!service) {
+            Alert.alert('Erro ao adicionar serviço', 'Selecione um serviço')
+            return
+        }
+
+        if (!quantity) {
+            Alert.alert('Erro ao adicionar serviço', 'Informe a quantidade')
+            return
+        }
+
+        if (!price) {
+            Alert.alert('Erro ao adicionar serviço', 'Invorme o preço')
+            return
+        }
+
+        const newService = {
+            id: uuidv4(),
+            name: service.name,
+            price: price,
+            quantity: quantity
+        }
+
+        setServices([...services, newService])
+    }
+
+    function removeService(serviceId: string) {
+        const newServices = services.filter(service => service.id !== serviceId)
+        setServices(newServices)
+    }
+
+    function formatQuantity(quantity: number) {
+        setQuantity(
+            !quantity ? 1 : quantity
+        )
     }
 
     useFocusEffect(
@@ -153,17 +191,20 @@ export function OrderScreen() {
                             className="border-2 border-gray-300 rounded-md p-2 mr-2"
                             placeholder="Quantidade"
                             keyboardType="numeric"
-                            value='1'
+                            onChangeText={quantity => formatQuantity(parseInt(quantity))}
+                            value={quantity.toString()}
                         />
                         <TextInput
                             className="border-2 border-gray-300 rounded-md p-2 mr-2"
                             placeholder="Valor"
                             keyboardType="numeric"
-                            value={service?.price.toString()}
+                            value={price.toString()}
+                            onChangeText={price => setPrice(parseFloat(price))}
                         />
 
                         <TouchableOpacity
                             className="bg-green-500 rounded-md size-6 justify-center items-center"
+                            onPress={addService}
                         >
                             <Text
                                 className="text-white"
@@ -176,10 +217,13 @@ export function OrderScreen() {
 
                 {services.map(item => {
                     return (
-                        <View className="mb-5 border-b border-gray-300 pb-2 justify-center" key={item.name}>
+                        <View className="mb-5 border-b border-gray-300 pb-2 justify-center" key={item.id}>
                             <View className="flex-row justify-between mb-5">
                                 <Text className="font-bold mb-2 max-w-[90%]">{item.name}</Text>
-                                <TouchableOpacity className="bg-red-500 rounded-md items-center justify-center items-center size-6">
+                                <TouchableOpacity
+                                    className="bg-red-500 rounded-md items-center justify-center items-center size-6"
+                                    onPress={() => removeService(item.id)}
+                                >
                                     <Text className="text-white" >-</Text>
                                 </TouchableOpacity>
                             </View>
