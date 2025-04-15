@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -9,15 +9,19 @@ import * as Icon from 'phosphor-react-native'
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
 
 import { Customer } from '@/Customer/Domain/Customer'
+import { Service } from '@/Service/Domain/Service'
+import { ListCustomerById } from '@/Customer/Application/ListCustomerById';
+import { ListCustomerByIdHandler } from '@/Customer/Application/ListCustomerByIdHandler';
+import { AsyncStorageCustomerRepository } from '@/Customer/Infrastructure/AsyncStorageCustomerRepository';
 
 import { Header } from "@/Shared/Infrastructure/Components/Header";
-
 export function OrderScreen() {
 
     const navigation = useNavigation()
     const route = useRoute()
 
     const [customer, setCustomer] = useState<Customer | null>(null)
+    const [service, setService] = useState<Service | null>(null)
 
     const [services, setServices] = useState<{
         name: string
@@ -36,11 +40,21 @@ export function OrderScreen() {
         },
     ])
 
-    useFocusEffect(() => {
-        if (route.params?.customer) {
-            setCustomer(route.params.customer)
-        }
-    })
+    async function getCustomer(customerId: string) {
+        const customerRepository = new AsyncStorageCustomerRepository()
+        const command = new ListCustomerById(customerId)
+        const handler = new ListCustomerByIdHandler(customerRepository)
+
+        const customer = await handler.execute(command)
+
+        setCustomer(customer)
+    }
+
+    useFocusEffect(
+        useCallback(() => {
+            getCustomer(route.params.customerId)
+        }, [])
+    )
 
     return (
         <SafeAreaView className="flex-1 p-2">
@@ -62,7 +76,7 @@ export function OrderScreen() {
 
                     <TouchableOpacity
                         className="bg-green-500 rounded-md size-6 justify-center items-center"
-                        onPress={() => navigation.navigate('selectCustomer')}
+                        onPress={() => navigation.navigate('selectCustomer', route.params)}
                     >
                         <Text
                             className="text-white"
@@ -93,6 +107,7 @@ export function OrderScreen() {
 
                     <TouchableOpacity
                         className="bg-green-500 rounded-md size-6 justify-center items-center"
+                        onPress={() => navigation.navigate('selectService', route.params)}
                     >
                         <Text
                             className="text-white"

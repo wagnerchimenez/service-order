@@ -49,4 +49,10 @@ export class AsyncStorageCustomerRepository implements CustomerRepository {
         const customers = await AsyncStorage.getItem(this.CUSTOMER_KEY)
         return JSON.parse(customers || '[]')
     }
+
+    async findById(id: string): Promise<Customer | null> {
+        const customers = await AsyncStorage.getItem(this.CUSTOMER_KEY)
+        const customersArray = JSON.parse(customers || '[]')
+        return customersArray.find((customer: Customer) => customer.id === id) ?? null
+    }
 }

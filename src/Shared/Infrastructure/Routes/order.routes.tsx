@@ -5,6 +5,7 @@ import { RootStackParamList } from '../Types/types'
 import { OrdersScreen } from '@/Order/Presentation/Screens/OrdersScreen';
 import { OrderScreen } from '@/Order/Presentation/Screens/OrderScreen';
 import { SelectCustomerScreen } from '@/Order/Presentation/Screens/SelectCustomerScreen';
+import { SelectServiceScreen } from '@/Order/Presentation/Screens/SelectServiceScreen';
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
@@ -23,6 +24,10 @@ export function OrderRoutes() {
             <Screen
                 name="selectCustomer"
                 component={SelectCustomerScreen}
+            />
+            <Screen
+                name="selectService"
+                component={SelectServiceScreen}
             />
         </Navigator>
     )

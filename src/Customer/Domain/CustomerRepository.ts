@@ -6,5 +6,6 @@ export interface CustomerRepository {
 
     save(newCustomer: Customer): Promise<void>
     findAll(): Promise<Customer[]>
+    findById(id: string): Promise<Customer | null>
     delete(deletedCustomer: Customer): Promise<void>
 }

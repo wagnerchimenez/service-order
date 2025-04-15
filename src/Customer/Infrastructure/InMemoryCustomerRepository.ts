@@ -41,4 +41,8 @@ export class InMemoryCustomerRepository implements CustomerRepository {
     async findAll(): Promise<Customer[]> {
         return this.customers
     }
+
+    async findById(id: string): Promise<Customer | null> {
+        return this.customers.find(customer => customer.id === id) ?? null
+    }
 }

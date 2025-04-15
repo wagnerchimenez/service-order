@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 
 import { ListCustomers } from '@/Customer/Application/ListCustomers'
@@ -14,6 +14,7 @@ import { Header } from '@/Shared/Infrastructure/Components/Header'
 export function SelectCustomerScreen() {
 
     const navigation = useNavigation()
+    const route = useRoute()
 
     const [customers, setCustomers] = useState<Customer[]>([])
 
@@ -36,7 +37,7 @@ export function SelectCustomerScreen() {
 
             <Header
                 title="Selecionar Cliente"
-                onPressBack={() => navigation.navigate('order')}
+                onPressBack={() => navigation.navigate('order', route.params)}
             />
 
             <View className="flex-1 w-full">
@@ -55,7 +56,7 @@ export function SelectCustomerScreen() {
                                     <TouchableOpacity
                                         className="bg-red-500 p-2 rounded-md"
                                         onPress={() => { navigation.navigate('order', {
-                                            customer: item
+                                            customerId: item.id
                                         }) }}
                                     >
                                         <Text className="text-white text-sm font-bold">Selecionar</Text>
