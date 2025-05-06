@@ -1,10 +1,9 @@
 # Service Order
 
-- Aplicativo voltado para criação de ordem de serviço
+A React Native application for managing service orders.
 
-# Recursos
-
-- Cadastro de clientes
-- Cadastro de serviços
-- Configurações da ordem de serviço
-- Criação de ordem de serviço
+# Features
+- Customer registration
+- Service registration
+- Service order settings and reports
+- Create service orders
