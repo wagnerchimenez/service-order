@@ -110,6 +110,18 @@ export function OrderScreen() {
         )
     }
 
+    function createOrder() {
+        if (!customer) {
+            Alert.alert('Erro ao criar ordem de serviço', 'Informe o cliente')
+            return
+        }
+
+        if (!service) {
+            Alert.alert('Erro ao criar ordem de serviço', 'Adicione serviços')
+            return
+        }
+    }
+
     useFocusEffect(
         useCallback(() => {
             getCustomer(route.params?.customerId)
@@ -241,7 +253,10 @@ export function OrderScreen() {
                 </View>
             </ScrollView>
 
-            <TouchableOpacity className="bg-green-500 p-2 rounded-md flex-row justify-center items-center gap-2">
+            <TouchableOpacity 
+                className="bg-green-500 p-2 rounded-md flex-row justify-center items-center gap-2"
+                onPress={createOrder}
+            >
                 <Icon.Check size={24} color="white" />
                 <Text className="text-white text-center">
                     Finalizar
